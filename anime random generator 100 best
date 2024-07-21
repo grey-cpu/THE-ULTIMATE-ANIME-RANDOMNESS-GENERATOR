@@ -1,0 +1,105 @@
+import random
+
+class RandomShowPicker:
+    def __init__(self, shows):
+        self.shows = shows
+        self.unpicked_shows = list(shows)
+    
+    def pick_show(self):
+        if not self.unpicked_shows:
+            raise ValueError("All shows have been picked.")
+        picked_show = random.choice(self.unpicked_shows)
+        self.unpicked_shows.remove(picked_show)
+        return picked_show
+
+# List of 100 best anime shows with year and director
+anime_shows = [
+    ("Neon Genesis Evangelion", 1995, "Hideaki Anno"),
+    ("Cowboy Bebop", 1998, "Shinichirō Watanabe"),
+    ("Fullmetal Alchemist: Brotherhood", 2009, "Yasuhiro Irie"),
+    ("Death Note", 2006, "Tetsurō Araki"),
+    ("Attack on Titan", 2013, "Tetsurō Araki, Masashi Koizuka"),
+    ("Steins;Gate", 2011, "Hiroshi Hamasaki, Takuya Satō"),
+    ("One Piece", 1999, "Kōnosuke Uda, Junji Shimizu, Hiroaki Miyamoto, Toshinori Fukuzawa, Satoshi Itō"),
+    ("Naruto", 2002, "Hayato Date"),
+    ("Naruto: Shippuden", 2007, "Hayato Date"),
+    ("My Hero Academia", 2016, "Kenji Nagasaki"),
+    ("Dragon Ball Z", 1989, "Daisuke Nishio"),
+    ("Dragon Ball", 1986, "Minoru Okazaki, Daisuke Nishio"),
+    ("Hunter x Hunter", 2011, "Hiroshi Kōjina"),
+    ("Code Geass: Lelouch of the Rebellion", 2006, "Gorō Taniguchi"),
+    ("Sword Art Online", 2012, "Tomohiko Itō"),
+    ("Tokyo Ghoul", 2014, "Shuhei Morita"),
+    ("One Punch Man", 2015, "Shingo Natsume, Chikara Sakurai"),
+    ("Bleach", 2004, "Noriyuki Abe"),
+    ("Black Clover", 2017, "Tatsuya Yoshihara"),
+    ("Fairy Tail", 2009, "Shinji Ishihira"),
+    ("Demon Slayer: Kimetsu no Yaiba", 2019, "Haruo Sotozaki"),
+    ("JoJo's Bizarre Adventure", 2012, "Naokatsu Tsuda, Toshiyuki Kato"),
+    ("Fate/Zero", 2011, "Ei Aoki"),
+    ("Psycho-Pass", 2012, "Naoyoshi Shiotani"),
+    ("Mob Psycho 100", 2016, "Yuzuru Tachikawa"),
+    ("Sword Art Online: Alicization", 2018, "Manabu Ono"),
+    ("The Seven Deadly Sins", 2014, "Tensai Okamura"),
+    ("K-On!", 2009, "Naoko Yamada"),
+    ("Clannad", 2007, "Tatsuya Ishihara"),
+    ("Angel Beats!", 2010, "Seiji Kishi"),
+    ("Toradora!", 2008, "Tatsuyuki Nagai"),
+    ("The Melancholy of Haruhi Suzumiya", 2006, "Tatsuya Ishihara"),
+    ("Lucky☆Star", 2007, "Yutaka Yamamoto, Yasuhiro Takemoto"),
+    ("Your Lie in April", 2014, "Kyōhei Ishiguro"),
+    ("Anohana: The Flower We Saw That Day", 2011, "Tatsuyuki Nagai"),
+    ("Madoka Magica", 2011, "Akiyuki Shinbo, Yukihiro Miyamoto"),
+    ("Re:Zero - Starting Life in Another World", 2016, "Masaharu Watanabe"),
+    ("Overlord", 2015, "Naoyuki Itō"),
+    ("No Game No Life", 2014, "Atsuko Ishizuka"),
+    ("The Rising of the Shield Hero", 2019, "Takao Abo"),
+    ("KonoSuba: God's Blessing on This Wonderful World!", 2016, "Takaomi Kanasaki"),
+    ("Log Horizon", 2013, "Shinji Ishihira"),
+    ("Sword Art Online II", 2014, "Tomohiko Itō"),
+    ("Assassination Classroom", 2015, "Seiji Kishi"),
+    ("Food Wars!: Shokugeki no Soma", 2015, "Yoshitomo Yonetani"),
+    ("Haikyu!!", 2014, "Susumu Mitsunaka"),
+    ("Yuri on Ice", 2016, "Sayo Yamamoto"),
+    ("March Comes in Like a Lion", 2016, "Akiyuki Shinbo, Kenjirou Okada"),
+    ("A Silent Voice", 2016, "Naoko Yamada"),
+    ("Hyouka", 2012, "Yasuhiro Takemoto"),
+    ("Violet Evergarden", 2018, "Taichi Ishidate"),
+    ("The Ancient Magus' Bride", 2017, "Norihiro Naganuma"),
+    ("Erased", 2016, "Tomohiko Itō"),
+    ("The Promised Neverland", 2019, "Mamoru Kanbe"),
+    ("Beastars", 2019, "Shinichi Matsumi"),
+    ("Carole & Tuesday", 2019, "Shinichirō Watanabe"),
+    ("Durarara!!", 2010, "Takahiro Omori"),
+    ("Kaguya-sama: Love Is War", 2019, "Shinichi Omata"),
+    ("Kimi ni Todoke", 2009, "Hiro Kaburagi"),
+    ("Ano Natsu de Matteru", 2012, "Tatsuyuki Nagai"),
+    ("Golden Time", 2013, "Chiaki Kon"),
+    ("Love, Chunibyo & Other Delusions", 2012, "Tatsuya Ishihara"),
+    ("Nisekoi", 2014, "Naoyuki Tatsuwa"),
+    ("Oregairu", 2013, "Ai Yoshimura"),
+    ("Plastic Memories", 2015, "Yoshiyuki Fujiwara"),
+    ("Rascal Does Not Dream of Bunny Girl Senpai", 2018, "Sōichi Masui"),
+    ("Saekano: How to Raise a Boring Girlfriend", 2015, "Kanta Kamei"),
+    ("Shigatsu wa Kimi no Uso", 2014, "Kyōhei Ishiguro"),
+    ("Shokugeki no Soma", 2015, "Yoshitomo Yonetani"),
+    ("The Quintessential Quintuplets", 2019, "Satoshi Kuwabara"),
+    ("We Never Learn", 2019, "Yoshiaki Iwasaki"),
+    ("Working!!", 2010, "Yoshimasa Hiraike"),
+    ("Yahari Ore no Seishun Love Comedy wa Machigatteiru", 2013, "Ai Yoshimura"),
+    ("Your Lie in April", 2014, "Kyōhei Ishiguro"),
+    ("Zombieland Saga", 2018, "Munehisa Sakai"),
+    ("Fruits Basket", 2019, "Yoshihide Ibata"),
+    ("Great Teacher Onizuka", 1999, "Noriyuki Abe"),
+    ("Hajime no Ippo", 2000, "Satoshi Nishimura"),
+    ("Initial D", 1998, "Shin Misawa"),
+    ("Kuroko's Basketball", 2012, "Shunsuke Tada"),
+    ("One Outs", 2008, "Yuzo Sato"),
+    ("Prince of Tennis", 2001, "Takayuki Hamana"),
+    ("Slam Dunk", 1993, "Nobutaka Nishizawa"),
+    ("Yowamushi Pedal", 2013, "Osamu Nabeshima"),
+]
+
+# Instantiate and use the RandomShowPicker
+picker = RandomShowPicker(anime_shows)
+print(picker.pick_show())
